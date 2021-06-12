@@ -1,5 +1,5 @@
 import './App.css';
-import { Button, Container } from "semantic-ui-react";
+import { Container } from "semantic-ui-react";
 import Navi from './layouts/Navi';
 import Dashboard from './layouts/Dashboard';
 

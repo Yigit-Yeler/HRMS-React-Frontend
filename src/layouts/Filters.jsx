@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input, Menu, Icon, Container, Header, Dropdown, DropdownItem } from 'semantic-ui-react'
+import { Input, Menu, Icon, Header, Dropdown } from 'semantic-ui-react'
 
 export default function Filters() {
     return (
@@ -13,19 +13,19 @@ export default function Filters() {
                     />
                     <br /><br /><br />
                     <Header as='h4' textAlign="left">
-                        <Header.Content>Uptime Guarante</Header.Content>
+                        <Header.Content>Şehire Göre Ara</Header.Content>
                     </Header>
                     <Menu.Menu>
                         <Dropdown placeholder='State' search selection />
                     </Menu.Menu>
                     <Header as='h4' textAlign="left">
-                        <Header.Content>Uptime Guarante</Header.Content>
+                        <Header.Content>Yeteneğe Göre Ara</Header.Content>
                     </Header>
                     <Menu.Menu>
                         <Dropdown placeholder='State' search selection />
                     </Menu.Menu>
                     <Header as='h4' textAlign="left">
-                        <Header.Content>Uptime Guarantee</Header.Content>
+                        <Header.Content></Header.Content>
                     </Header>
                     <Menu.Menu>
                         <Dropdown placeholder='State' search selection />
