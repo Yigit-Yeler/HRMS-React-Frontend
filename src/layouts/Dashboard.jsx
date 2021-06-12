@@ -3,6 +3,7 @@ import { Grid } from 'semantic-ui-react'
 import { Route } from 'react-router'
 import Filters from './Filters'
 import JobAdList from '../pages/JobAdList'
+import JobAdDetail from '../pages/JobAdDetail'
 
 export default function Dashboard() {
     return (
@@ -15,6 +16,7 @@ export default function Dashboard() {
                     <Grid.Column width={12}>
                         <Route exact path="/" component={JobAdList} />
                         <Route exact path="/jobads" component={JobAdList} />
+                        <Route path="/jobads/:id" component={JobAdDetail} />
                     </Grid.Column>
                 </Grid.Row>
             </Grid>

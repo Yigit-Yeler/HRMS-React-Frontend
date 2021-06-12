@@ -19,13 +19,13 @@ export default function Filters() {
                         <Dropdown placeholder='State' search selection />
                     </Menu.Menu>
                     <Header as='h4' textAlign="left">
-                        <Header.Content>Yeteneğe Göre Ara</Header.Content>
+                        <Header.Content>Pozisyona Göre Ara</Header.Content>
                     </Header>
                     <Menu.Menu>
                         <Dropdown placeholder='State' search selection />
                     </Menu.Menu>
                     <Header as='h4' textAlign="left">
-                        <Header.Content></Header.Content>
+                        <Header.Content>Şirkete Göre Ara</Header.Content>
                     </Header>
                     <Menu.Menu>
                         <Dropdown placeholder='State' search selection />
