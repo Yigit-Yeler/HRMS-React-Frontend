@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import { Input, Menu, Icon, Header, Dropdown } from 'semantic-ui-react'
 import CityService from '../services/cityService'
+import JobAdService from '../services/jobAdService'
 import PositionService from '../services/positionService'
 
 export default function Filters() {
     const [cities, setCities] = useState([])
     const [positions, setPositions] = useState([])
+    const [companies, setCompanies] = useState([])
     let stateOptionsCities = [];
     let stateOptionsPositions = [];
+    let stateOptionsCompanies = [];
 
 
     useEffect(() => {
         let cityService = new CityService()
         cityService.getCities().then(result => {
-            result.data.data.map(city => {
+            result.data.data.forEach(city => {
                 stateOptionsCities.push({
                     key: city.id,
                     text: city.cityName,
@@ -27,7 +30,7 @@ export default function Filters() {
     useEffect(() => {
         let positionService = new PositionService()
         positionService.getPositions().then(result => {
-            result.data.data.map(position => {
+            result.data.data.forEach(position => {
                 stateOptionsPositions.push({
                     key: position.id,
                     text: position.positionName,
@@ -35,6 +38,20 @@ export default function Filters() {
                 })
             })
             setPositions(stateOptionsPositions)
+        })
+    }, [])
+
+    useEffect(() => {
+        let jobAdService = new JobAdService()
+        jobAdService.getJobAds().then(result => {
+            result.data.data.forEach(jobAd => {
+                stateOptionsCompanies.push({
+                    key: jobAd.id,
+                    text: jobAd.companyName,
+                    value: jobAd.id
+                })
+            })
+            setCompanies(stateOptionsCompanies)
         })
     }, [])
 
@@ -65,7 +82,7 @@ export default function Filters() {
                         <Header.Content>Şirkete Göre Ara</Header.Content>
                     </Header>
                     <Menu.Menu>
-                        <Dropdown placeholder='State' search selection />
+                        <Dropdown placeholder='State' search selection options={companies} />
                     </Menu.Menu>
                 </Menu.Item>
 
