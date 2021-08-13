@@ -4,9 +4,8 @@ import { Input, Dropdown, Form, TextArea } from 'semantic-ui-react'
 import CityService from '../services/cityService'
 import JobTypeService from '../services/jobTypeService'
 import JobTimeService from '../services/jobTimeService'
-import PositionService from '../services/positionService'
 
-const LoginForm = () => {
+const JobAdAdd = () => {
 
     const [cities, setCities] = useState([])
     const [jobTypes, setJobTypes] = useState([])
@@ -110,4 +109,4 @@ const LoginForm = () => {
     );
 };
 
-export default LoginForm;
+export default JobAdAdd;

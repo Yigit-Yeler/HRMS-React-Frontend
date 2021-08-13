@@ -1,35 +1,42 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { Card, Image } from 'semantic-ui-react'
-import JobAdService from '../services/jobAdService'
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { getJobAdById } from '../store/actions/jobAd/jobAdById';
 
 export default function JobAdDetail() {
+    const { JobAdReducer } = useSelector(state => state)
+    const dispatch = useDispatch()
 
     const { id } = useParams();
 
-    const [jobad, setJobAd] = useState({ position: { positionName: null } })
-
     useEffect(() => {
-        let jobAdService = new JobAdService()
-        jobAdService.getJobAdById(id).then(result => { setJobAd(result.data.data) })
+        dispatch(getJobAdById(id))
+        console.log(JobAdReducer.jobAd)
+        // let jobAdService = new JobAdService()
+        // jobAdService.getJobAdById(id).then(result => { setJobAd(result.data.data) })
     }, [])
 
     return (
         <div>
             <Card.Group>
                 <Card fluid>
-                    <Card.Content>
-                        <Image
-                            style={{ marginBottom: '3em' }}
-                            size='medium'
-                            src='https://galeri8.uludagsozluk.com/498/killua-zoldyck_808025_m.jpg'
-                        />
-                        <Card.Header>{jobad.position.positionName}</Card.Header>
-                        <Card.Meta>{jobad.companyName}</Card.Meta>
-                        <Card.Description>
-                            {jobad.description}
-                        </Card.Description>
-                    </Card.Content>
+                    {JobAdReducer.isLoading ? (<h1>YÜKLENİYOR...</h1>) : (
+                        <Card.Content>
+                            <Image
+                                style={{ marginBottom: '3em' }}
+                                size='medium'
+                                src='https://galeri8.uludagsozluk.com/498/killua-zoldyck_808025_m.jpg'
+                            />
+                            <Card.Header>{JobAdReducer.jobAd.position.positionName}</Card.Header>
+                            <Card.Meta>{JobAdReducer.jobAd.companyName}</Card.Meta>
+                            <Card.Description>
+                                {JobAdReducer.jobAd.description}
+                            </Card.Description>
+                        </Card.Content>
+                    )}
+
                 </Card>
             </Card.Group>
         </div>

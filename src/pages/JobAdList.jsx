@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Card, Menu } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
-import JobAdService from '../services/jobAdService'
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { getJobAds } from '../store/actions/jobAd/jobAdList';
 
 export default function JobAdList() {
-
-    const [jobads, setJobAds] = useState([])
+    const { JobAdsReducer } = useSelector(state => state)
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        let jobAdService = new JobAdService()
-        jobAdService.getJobAds().then(result => setJobAds(result.data.data))
+        dispatch(getJobAds())
+        // let jobAdService = new JobAdService()
+        // jobAdService.getJobAds().then(result => setJobAds(result.data.data))
     }, [])
 
     return (
@@ -17,7 +20,7 @@ export default function JobAdList() {
             <Menu fluid vertical>
                 <Menu.Item>
                     {
-                        jobads.map(jobAd => (
+                        JobAdsReducer.isLoading ? <h1>YÜKLENİYOR...</h1> : JobAdsReducer.jobAds.map(jobAd => (
                             <Link to={`/jobads/${jobAd.id}`}>
                                 <Card
                                     style={{ marginTop: '2em' }}
@@ -29,6 +32,7 @@ export default function JobAdList() {
                                 />
                             </Link>
                         ))
+
                     }
                 </Menu.Item>
             </Menu>

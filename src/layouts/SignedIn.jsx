@@ -13,6 +13,7 @@ export default function SignedIn() {
                     <Dropdown.Menu>
                         <DropdownItem text="Bilgilerim" icon="info" />
                         <DropdownItem text="Cıkış Yap" icon="sign-out" />
+                        <DropdownItem text="İş İlanı Ekle" icon="plus" />
                     </Dropdown.Menu>
                 </Dropdown>
             </Menu.Item>

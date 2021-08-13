@@ -2,17 +2,19 @@ import './App.css';
 import { Container } from "semantic-ui-react";
 import Navi from './layouts/Navi';
 import Dashboard from './layouts/Dashboard';
-import Register from './pages/Register';
+import { Provider } from 'react-redux';
+import store from './store'
 
 function App() {
   return (
-    <div className="App">
-      <Register />
-      {/*<Navi />
-      <Container className="main">
-        <Dashboard />
-      </Container>*/}
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <Navi />
+        <Container className="main">
+          <Dashboard />
+        </Container>
+      </div>
+    </Provider>
   );
 }
 
