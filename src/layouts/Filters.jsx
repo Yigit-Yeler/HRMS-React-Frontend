@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { Input, Menu, Icon, Header, Dropdown } from 'semantic-ui-react'
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import CityService from '../services/cityService'
 import JobAdService from '../services/jobAdService'
 import PositionService from '../services/positionService'
+import { getCompanies } from '../store/actions/company/company';
 
 export default function Filters() {
+    const { CompanyReducer } = useSelector(state => state)
+    const dispatch = useDispatch()
+
     const [cities, setCities] = useState([])
     const [positions, setPositions] = useState([])
     const [companies, setCompanies] = useState([])
@@ -42,6 +48,8 @@ export default function Filters() {
     }, [])
 
     useEffect(() => {
+        dispatch(getCompanies())
+        console.log(CompanyReducer.companies)
         let jobAdService = new JobAdService()
         jobAdService.getJobAds().then(result => {
             result.data.data.forEach(jobAd => {
